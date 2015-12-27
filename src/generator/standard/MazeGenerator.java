@@ -16,7 +16,29 @@ public class MazeGenerator {
         this.height = height;
         this.random = new Random();
         init();
-        generate();
+    }
+    
+    public MazeGenerator(char[][] map){
+    	//initialize border using other constructor 
+    	this(map.length, map[0].length);
+    	
+    	//copy contents of input array
+    	for(int x = 0; x < map.length; x++){
+    		for(int y = 0; y < map[0].length; y++){
+    			maze[x+1][y+1] = map[x][y];
+    		}
+    	}
+    	
+    }
+    
+    public char[][] generateMaze(){
+    	Coordinates coords = findNextEligibleInitialTile();
+    	while(coords != null){
+    		floodFill(coords.getX(), coords.getY());
+    		coords = findNextEligibleInitialTile();
+    	}
+    	return maze;
+    	
     }
     
     public char[][] getMaze(){
@@ -46,46 +68,39 @@ public class MazeGenerator {
 
 
     // generate the maze
-    private void floodFill(Stack<Coordinates> stack) {
-    	if(stack.isEmpty()){
-    		return;
+    private void floodFill(int initX, int initY) {
+    	Stack<Coordinates> stack = new Stack<Coordinates>();
+    	stack.push(new Coordinates(initX, initY));
+    	Coordinates coords;
+    	int x, y;
+    	while(!stack.isEmpty()){
+    		coords = stack.pop();
+    		x = coords.getX();
+        	y = coords.getY();
+        	if (visited[x][y] || maze[x][y] != TileType.WALL){
+        		continue;
+        	}
+        	if(isLegalTile(x,y)){
+        		maze[x][y] = TileType.FLOOR;
+        		stack = addNeighboursInRandomOrder(x, y, stack);
+        	}
     	}
-    	//System.out.println(stack);
-    	Coordinates coords = stack.pop();
-    	
-    	int x = coords.getX();
-    	int y = coords.getY();
-    	
-    	if (visited[x][y] || maze[x][y] != TileType.WALL)
-    	{
-    		floodFill(stack);
-    		return;
-    	}
-    	
-    	
-    	
-    	if(isLegalTile(x,y)){
-    		maze[x][y] = TileType.FLOOR;
-    		LinkedList<Coordinates> cds = new LinkedList<Coordinates>();
-    		cds.add(new Coordinates(x-1, y));
-    		cds.add(new Coordinates(x, y+1));
-    		cds.add(new Coordinates(x+1, y));
-    		cds.add(new Coordinates(x, y-1));
-    		
-    		for (int i = 4; i > 0; i--)
-    		{
-    			stack.add(cds.remove(random.nextInt(i)));
-    		}
-    	}
-    	
-    	floodFill(stack);
-		return;
-    	
-    	
-    	
-
-        
     }
+    
+    private Stack<Coordinates> addNeighboursInRandomOrder(int x, int y, Stack<Coordinates> stack){
+    	LinkedList<Coordinates> neighbours = new LinkedList<Coordinates>();
+    	
+    	neighbours.add(new Coordinates(x-1, y));
+    	neighbours.add(new Coordinates(x, y+1));
+    	neighbours.add(new Coordinates(x+1, y));
+    	neighbours.add(new Coordinates(x, y-1));
+		
+		for (int i = 4; i > 0; i--)
+		{
+			stack.add(neighbours.remove(random.nextInt(i)));
+		}
+		return stack;
+	}
     
     private boolean isLegalTile(int x, int y){
     	char[] neighbours = getNeighbours(x, y);
@@ -105,13 +120,23 @@ public class MazeGenerator {
     	}
     	return result;
     }
-
-
-    // generate the maze starting from lower left
-    private void generate() {
-    	Stack<Coordinates> q = new Stack<Coordinates>();
-    	q.push(new Coordinates(1,1));
-    	floodFill(q);     
+    
+    private boolean isEligibleInitialTile(int x, int y){
+    	boolean result = true;
+    	if(visited[x][y]) return false;
+    	for(char c : getNeighbours(x,y)){
+    		result = result && (c == TileType.WALL);
+    	}
+    	return result;
+    }
+    
+    private Coordinates findNextEligibleInitialTile(){
+    	for (int x = 0; x < maze.length; x++) {
+    		for (int y = 0; y < maze[0].length; y++) {
+                if(isEligibleInitialTile(x, y)) return new Coordinates(x,y);
+            }
+        }
+    	return null;
     }
     
     private char[] getNeighbours(int x, int y){

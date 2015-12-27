@@ -22,9 +22,9 @@ public class DungeonGenerator {
 		this.visited = new boolean[width][height];
 		this.roomGenerator = roomGenerator;
 		this.rooms = new ArrayList<Room>();
-		this.numberOfRooms = 20;
+		this.numberOfRooms = 15;
 		this.minRoomSize = 3;
-		this.maxRoomSize = 5;
+		this.maxRoomSize = 8;
 		
 		initializeVisited();
 		
@@ -39,7 +39,7 @@ public class DungeonGenerator {
 	}
 	
 	public char[][] generateDungeon(){
-		//fillMapWith(TileType.WALL);
+		fillMapWith(TileType.WALL);
 		generateRooms();		
 		return map;
 	}	
