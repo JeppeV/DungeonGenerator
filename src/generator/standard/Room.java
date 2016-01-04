@@ -1,6 +1,6 @@
 package generator.standard;
 
-public class Room {
+public class Room implements DungeonArea {
 	
 	private int width, height;
 	private char[][] room;

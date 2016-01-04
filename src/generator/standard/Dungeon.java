@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class Dungeon {
 	private int width, height;
 	private char[][] dungeon;
+	private boolean[][] visited;
 	private ArrayList<Room> rooms;
 	
 	public Dungeon(int width, int height){
 		this.width = width;
 		this.height = height;
 		this.dungeon = new char[width][height];
+        this.visited = new boolean[width][height];
 		this.rooms = new ArrayList<Room>();
 	}
 	
@@ -18,7 +20,7 @@ public class Dungeon {
 		rooms.add(room);
 	}
 	
-	public ArrayList<Room> getRooms(){
+	public ArrayList<Room> rooms(){
 		return rooms;
 	}
 	
@@ -30,6 +32,18 @@ public class Dungeon {
 		}
 		return null;
 	}
+
+    public boolean[][] visited(){
+        return visited;
+    }
+
+    public void setVisited(int x, int y, boolean b){
+        visited[x][y] = b;
+    }
+
+    public boolean getVisited(int x, int y){
+        return visited[x][y];
+    }
 		
 	public void setTile(int x, int y, char c){
 		dungeon[x][y] = c;

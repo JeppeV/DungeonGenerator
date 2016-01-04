@@ -2,7 +2,7 @@ package generator.standard;
 
 import java.util.ArrayList;
 
-public class Maze {
+public class Maze implements DungeonArea {
 	
 	private ArrayList<Coordinates> tiles;
 	

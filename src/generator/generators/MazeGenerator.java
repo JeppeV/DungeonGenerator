@@ -1,4 +1,6 @@
-package generator.standard;
+package generator.generators;
+
+import generator.standard.Dungeon;
 
 public interface MazeGenerator {
 	

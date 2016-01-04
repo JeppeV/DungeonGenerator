@@ -1,4 +1,7 @@
-package generator.standard;
+package generator.generators;
+
+import generator.standard.Dungeon;
+import generator.standard.Room;
 
 public interface RoomGenerator {
 	
