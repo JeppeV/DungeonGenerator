@@ -5,7 +5,6 @@ public class Room {
 	private int width, height;
 	private char[][] room;
 	private int x1, y1, x2, y2;
-	private boolean visited;
 	
 	public Room(int x1, int y1, int width, int height){
 		this.width = width;
@@ -14,9 +13,7 @@ public class Room {
 		this.x1 = x1;
 		this.y1 = y1;
 		this.x2 = x1 + width;
-		this.y2 = y1 + height;
-		this.visited = false;
-		
+		this.y2 = y1 + height;		
 	}
 	
 	
@@ -38,14 +35,6 @@ public class Room {
 	public boolean overlaps(Room other){
 		return (this.x1 < other.x2) && (this.x2 > other.x1) && 
 				(this.y1 < other.y2) && (this.y2 > other.y1);
-	}
-		
-	public void setVisited(boolean visited){
-		this.visited = visited;
-	}
-	
-	public boolean getVisited(){
-		return visited;
 	}
 	
 	public void setTile(int x, int y, char c){
