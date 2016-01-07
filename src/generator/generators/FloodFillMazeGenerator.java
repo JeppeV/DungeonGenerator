@@ -31,7 +31,7 @@ public class FloodFillMazeGenerator implements MazeGenerator {
             mazes.add(maze);
             coords = findNextEligibleInitialTile(dungeon);
         }
-        System.out.println("Number of mazes: " + mazes.size());
+        System.out.println("MazeGenerator succesfully created " + mazes.size() + " mazes.");
         return dungeon;
 
     }

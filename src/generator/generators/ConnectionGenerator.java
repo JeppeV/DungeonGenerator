@@ -29,10 +29,9 @@ public class ConnectionGenerator {
 
     public Dungeon generateConnections(Dungeon dungeon){
         init(dungeon);
-        CompositeRegion composite = new CompositeRegion();
         HashMap<Coordinates, ArrayList<Region>> connectors = findConnectors(dungeon);
         //pick arbitrary starting region
-        System.out.println(connectors);
+        System.out.println(regions);
 
         return dungeon;
     }
@@ -40,6 +39,7 @@ public class ConnectionGenerator {
     private HashMap<Coordinates,ArrayList<Region>> findConnectors(Dungeon dungeon){
         HashMap<Coordinates,ArrayList<Region>> result = new HashMap<>();
         ArrayList<Region> temp;
+        ArrayList<Coordinates> regionCoords;
         Coordinates c;
         Region north, east, south, west;
         for(int x = 0; x < dungeon.getWidth(); x++){
@@ -57,15 +57,22 @@ public class ConnectionGenerator {
                     temp.add(north);
                     temp.add(south);
                     result.put(c, temp);
+                    regionCoords = regions.get(north);
+                    regionCoords.add(c);
+                    regionCoords = regions.get(south);
+                    regionCoords.add(c);
                 }else if(regionsAreDifferent(west, east)){
                     temp.add(west);
                     temp.add(east);
                     result.put(c, temp);
+                    regionCoords = regions.get(west);
+                    regionCoords.add(c);
+                    regionCoords = regions.get(east);
+                    regionCoords.add(c);
 
                 }
             }
         }
-        System.out.println("");
         return result;
     }
 

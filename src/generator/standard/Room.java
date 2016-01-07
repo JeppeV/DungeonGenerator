@@ -86,7 +86,7 @@ public class Room implements Region {
 
     @Override
     public String toString() {
-        return "Room " + x1 + ", " + y1;
+        return "Room " + x1 + "," + y1;
     }
 
     @Override

@@ -54,6 +54,6 @@ public class Maze implements Region {
 
     @Override
     public String toString(){
-        return "Maze: " + x1 + ", " + y1;
+        return "Maze: " + x1 + "," + y1;
     }
 }
