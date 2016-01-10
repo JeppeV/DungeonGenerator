@@ -10,7 +10,7 @@ public class TestGen {
 
 	public static void main(String[] args) {
 		DungeonGenerator generator = new DungeonGenerator(new StandardRoomGenerator(), new FloodFillMazeGenerator());
-		Dungeon d = generator.generateDungeon(40, 40);
+		Dungeon d = generator.generateDungeon(50, 50);
 		System.out.println(d);
 
 		
