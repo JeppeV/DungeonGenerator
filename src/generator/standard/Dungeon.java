@@ -28,8 +28,6 @@ public class Dungeon {
         mazes.add(maze);
     }
 
-
-
     public ArrayList<Maze> mazes(){
         return mazes;
     }
@@ -93,16 +91,4 @@ public class Dungeon {
 
         return string;
     }
-
-    /* Dont' know if i will need this
-
-    private Room getRoomAt(int x, int y) {
-        for (Room room : rooms) {
-            if (room.getX1() <= x && room.getY1() <= y && room.getX2() > x && room.getY2() > y) {
-                return room;
-            }
-        }
-        return null;
-    }
-    */
 }

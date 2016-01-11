@@ -9,9 +9,9 @@ public class DungeonGenerator {
     private MazeGenerator mazeGenerator;
     private ConnectionGenerator connectionGenerator;
 
-    public DungeonGenerator(RoomGenerator roomGenerator, MazeGenerator mazeGenerator) {
-        this.roomGenerator = roomGenerator;
-        this.mazeGenerator = mazeGenerator;
+    public DungeonGenerator() {
+        this.roomGenerator = new RoomGenerator();
+        this.mazeGenerator = new MazeGenerator();
         this.connectionGenerator = new ConnectionGenerator();
     }
 
@@ -24,6 +24,7 @@ public class DungeonGenerator {
         dungeon = mazeGenerator.generateMazes(dungeon);
         System.out.println(dungeon);
         dungeon = connectionGenerator.generateConnections(dungeon);
+        System.out.println(dungeon);
         return dungeon;
     }
 

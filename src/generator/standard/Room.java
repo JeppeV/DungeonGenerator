@@ -6,14 +6,12 @@ public class Room implements Region {
 
     private int width, height;
     private ArrayList<Coordinates> tiles;
-    private char[][] room;
     private int x1, y1, x2, y2;
 
     public Room(int x1, int y1, int width, int height) {
         this.width = width;
         this.height = height;
         this.tiles = new ArrayList<>();
-        this.room = new char[width][height];
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x1 + width;
@@ -30,7 +28,6 @@ public class Room implements Region {
         return tiles;
     }
 
-
     /**
      * @param other   the room to check if this room overlaps
      * @param padding the padding to include when checking for overlapping
@@ -41,7 +38,6 @@ public class Room implements Region {
                 (this.y1 - padding < other.y2) && (this.y2 + padding > other.y1);
     }
 
-
     /**
      * @param other the room to check if this room overlaps
      * @return whether this room overlaps the other room
@@ -49,15 +45,6 @@ public class Room implements Region {
     public boolean overlaps(Room other) {
         return (this.x1 < other.x2) && (this.x2 > other.x1) &&
                 (this.y1 < other.y2) && (this.y2 > other.y1);
-    }
-
-
-    public void setTile(int x, int y, char c) {
-        room[x][y] = c;
-    }
-
-    public char getTile(int x, int y) {
-        return room[x][y];
     }
 
     public int getWidth() {
@@ -98,7 +85,6 @@ public class Room implements Region {
 
         if (x1 != room.x1) return false;
         return y1 == room.y1;
-
     }
 
     @Override

@@ -35,9 +35,12 @@ public class ConnectionGenerator {
 
     public Dungeon generateConnections(Dungeon dungeon){
         init(dungeon);
-        //get all connectors
+        //all connectors and the regions they connect
         HashMap<Coordinates, ArrayList<Region>> allConnectors = findAllConnectors(dungeon);
+        //connectors currently being considered and corresponding unmerged regions
         HashMap<Coordinates, Region> currentConnectors = new HashMap<>();
+        //connectors to be removed
+        ArrayList<Coordinates> obsoleteConnectors = new ArrayList<>();
         Region currentRegion, otherRegion;
 
         //select random starting region:
@@ -46,11 +49,12 @@ public class ConnectionGenerator {
 
         //while there are still connectors to consider
         while(allConnectors.size() != 0){
-            System.out.println("Connectors: " + allConnectors.size());
-            System.out.println("TempConnectos: " + currentConnectors.size());
-            //initial node is merged:
+            //current node has been merged:
             merged.put(currentRegion, true);
             //find all connectors connected to current region
+            //here we check that one of the regions on either side of the connector is the current region,
+            //and that the other region has no already been merged. this indicates a new connector
+            //then we store the coordinates of the connector, and the region that has not been merged
             for(Coordinates c : allConnectors.keySet()){
                 Region region1 = allConnectors.get(c).get(0);
                 Region region2 = allConnectors.get(c).get(1);
@@ -68,7 +72,8 @@ public class ConnectionGenerator {
             dungeon.setVisited(randomC.getX(), randomC.getY(), true);
 
             //remove connectors between the two rooms from the connector sets
-            ArrayList<Coordinates> obsoleteConnectors = new ArrayList<>();
+            obsoleteConnectors.clear();
+
             for(Coordinates c : currentConnectors.keySet()){
                 if(currentConnectors.get(c).equals(otherRegion)){
                     obsoleteConnectors.add(c);
@@ -81,14 +86,7 @@ public class ConnectionGenerator {
             currentRegion = otherRegion;
         }
 
-
         return dungeon;
-    }
-
-    private Coordinates getRandomKey(HashMap<Coordinates, ?> map){
-        List<Coordinates> keys = new ArrayList<>(map.keySet());
-        Coordinates randomKey = keys.get( random.nextInt(keys.size()) );
-        return randomKey;
     }
 
     private HashMap<Coordinates,ArrayList<Region>> findAllConnectors(Dungeon dungeon){
@@ -126,6 +124,14 @@ public class ConnectionGenerator {
         }
         return false;
     }
+
+    private Coordinates getRandomKey(HashMap<Coordinates, ?> map){
+        List<Coordinates> keys = new ArrayList<>(map.keySet());
+        Coordinates randomKey = keys.get( random.nextInt(keys.size()) );
+        return randomKey;
+    }
+
+
 
 
 
