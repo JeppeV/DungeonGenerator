@@ -94,8 +94,8 @@ public class ConnectionGenerator {
         ArrayList<Region> temp;
         Coordinates c;
         Region north, east, south, west;
-        for(int x = 0; x < dungeon.getWidth(); x++){
-            for(int y = 0; y < dungeon.getHeight(); y++){
+        for(int x = 0; x < dungeon.getWidthInTiles(); x++){
+            for(int y = 0; y < dungeon.getHeightInTiles(); y++){
                 if(dungeon.getVisited(x, y)) continue;
                 c = new Coordinates(x, y);
                 temp = new ArrayList<>();

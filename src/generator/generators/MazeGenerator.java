@@ -39,8 +39,8 @@ public class MazeGenerator {
 
     private void init(Dungeon dungeon) {
         // initialize border array to keep track of border cells
-        int width = dungeon.getWidth();
-        int height = dungeon.getHeight();
+        int width = dungeon.getWidthInTiles();
+        int height = dungeon.getHeightInTiles();
 
 
         border = new boolean[width][height];
@@ -134,8 +134,8 @@ public class MazeGenerator {
     }
 
     private Coordinates findNextEligibleInitialTile(Dungeon dungeon) {
-        for (int x = 0; x < dungeon.getWidth(); x++) {
-            for (int y = 0; y < dungeon.getHeight(); y++) {
+        for (int x = 0; x < dungeon.getWidthInTiles(); x++) {
+            for (int y = 0; y < dungeon.getHeightInTiles(); y++) {
                 if (isEligibleInitialTile(dungeon, x, y)) return new Coordinates(x, y);
             }
         }

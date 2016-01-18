@@ -29,8 +29,8 @@ public class RoomGenerator {
         int x1, y1, roomWidth, roomHeight;
         int attempts;
         int roomsAdded = 0;
-        int maxX = dungeon.getWidth() - maxRoomSize;
-        int maxY = dungeon.getHeight() - maxRoomSize;
+        int maxX = dungeon.getWidthInTiles() - maxRoomSize;
+        int maxY = dungeon.getHeightInTiles() - maxRoomSize;
         Random random = new Random();
         Room room;
 

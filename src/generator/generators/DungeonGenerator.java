@@ -2,6 +2,7 @@ package generator.generators;
 
 import generator.standard.Constants;
 import generator.standard.Dungeon;
+import generator.standard.Map;
 
 public class DungeonGenerator {
 
@@ -15,7 +16,7 @@ public class DungeonGenerator {
         this.connectionGenerator = new ConnectionGenerator();
     }
 
-    public Dungeon generateDungeon(int width, int height) {
+    public Map generateDungeon(int width, int height) {
         Dungeon dungeon = new Dungeon(width, height);
         dungeon = fillDungeonWith(dungeon, Constants.WALL);
         dungeon = fillVisitedWith(dungeon, false);
@@ -29,8 +30,8 @@ public class DungeonGenerator {
     }
 
     private Dungeon fillDungeonWith(Dungeon dungeon, char c) {
-        for (int x = 0; x < dungeon.getWidth(); x++) {
-            for (int y = 0; y < dungeon.getHeight(); y++) {
+        for (int x = 0; x < dungeon.getWidthInTiles(); x++) {
+            for (int y = 0; y < dungeon.getHeightInTiles(); y++) {
                 dungeon.setTile(x, y, c);
             }
         }
@@ -38,8 +39,8 @@ public class DungeonGenerator {
     }
 
     private Dungeon fillVisitedWith(Dungeon dungeon, boolean b) {
-        for (int x = 0; x < dungeon.getWidth(); x++) {
-            for (int y = 0; y < dungeon.getHeight(); y++) {
+        for (int x = 0; x < dungeon.getWidthInTiles(); x++) {
+            for (int y = 0; y < dungeon.getHeightInTiles(); y++) {
                 dungeon.setVisited(x, y, b);
             }
         }

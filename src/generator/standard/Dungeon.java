@@ -3,7 +3,7 @@ package generator.standard;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Dungeon {
+public class Dungeon implements Map {
     private int width, height;
     private char[][] dungeon;
     private boolean[][] visited;
@@ -67,15 +67,18 @@ public class Dungeon {
         dungeon[x][y] = c;
     }
 
+    @Override
     public char getTile(int x, int y) {
         return dungeon[x][y];
     }
 
-    public int getWidth() {
+    @Override
+    public int getWidthInTiles() {
         return width;
     }
 
-    public int getHeight() {
+    @Override
+    public int getHeightInTiles() {
         return height;
     }
 
