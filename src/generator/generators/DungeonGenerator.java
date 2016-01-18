@@ -21,11 +21,8 @@ public class DungeonGenerator {
         dungeon = fillDungeonWith(dungeon, Constants.WALL);
         dungeon = fillVisitedWith(dungeon, false);
         dungeon = roomGenerator.generateRooms(dungeon);
-        System.out.println(dungeon);
         dungeon = mazeGenerator.generateMazes(dungeon);
-        System.out.println(dungeon);
         dungeon = connectionGenerator.generateConnections(dungeon);
-        System.out.println(dungeon);
         return dungeon;
     }
 
