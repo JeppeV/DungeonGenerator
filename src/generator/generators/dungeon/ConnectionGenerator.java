@@ -18,7 +18,7 @@ public class ConnectionGenerator {
     private ArrayList<Region> regions;
     private HashMap<Region, Boolean> merged;
     private Random random;
-    private final double randomConnectorChance = 0.25;
+    private final double randomConnectorChance = 0.30;
 
 
     public ConnectionGenerator() {
