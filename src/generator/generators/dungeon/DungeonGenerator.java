@@ -1,9 +1,9 @@
 package generator.generators.dungeon;
 
+import generator.standard.dungeon.Dungeon;
+import generator.standard.Map;
 import generator.standard.MapGenerator;
 import generator.standard.TileType;
-import generator.standard.Dungeon;
-import generator.standard.Map;
 
 public class DungeonGenerator implements MapGenerator {
 
@@ -49,9 +49,6 @@ public class DungeonGenerator implements MapGenerator {
         }
         return dungeon;
     }
-
-
-
 
 
 }

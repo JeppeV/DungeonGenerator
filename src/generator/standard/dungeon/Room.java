@@ -1,4 +1,6 @@
-package generator.standard;
+package generator.standard.dungeon;
+
+import generator.standard.Coordinates;
 
 import java.util.ArrayList;
 
@@ -19,12 +21,12 @@ public class Room implements Region {
     }
 
     @Override
-    public void addTile(Coordinates coords){
+    public void addTile(Coordinates coords) {
         tiles.add(coords);
     }
 
     @Override
-    public ArrayList<Coordinates> getTiles(){
+    public ArrayList<Coordinates> getTiles() {
         return tiles;
     }
 

@@ -1,4 +1,6 @@
-package generator.standard;
+package generator.standard.dungeon;
+
+import generator.standard.Coordinates;
 
 import java.util.ArrayList;
 
@@ -10,9 +12,6 @@ public interface Region {
     ArrayList<Coordinates> getTiles();
 
     void addTile(Coordinates coords);
-
-
-
 
 
 }

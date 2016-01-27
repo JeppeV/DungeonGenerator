@@ -11,6 +11,10 @@ public interface Map {
 
     char getTile(Coordinates coords);
 
+    void setTile(int x, int y, char c);
+
+    void setTile(Coordinates coords, char c);
+
     int getWidthInTiles();
 
     int getHeightInTiles();

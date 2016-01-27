@@ -1,4 +1,6 @@
-package generator.standard;
+package generator.standard.dungeon;
+
+import generator.standard.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +12,7 @@ public class Dungeon implements Map {
     private ArrayList<Room> rooms;
     private ArrayList<Maze> mazes;
     private ArrayList<Region> regions;
-    private HashMap<Coordinates,Region> regionsMapping;
+    private HashMap<Coordinates, Region> regionsMapping;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -24,19 +26,19 @@ public class Dungeon implements Map {
     }
 
     public void addMaze(Maze maze) {
-        for(Coordinates c : maze.getTiles()){
+        for (Coordinates c : maze.getTiles()) {
             regionsMapping.put(c, maze);
         }
         mazes.add(maze);
         regions.add(maze);
     }
 
-    public ArrayList<Maze> mazes(){
+    public ArrayList<Maze> mazes() {
         return mazes;
     }
 
     public void addRoom(Room room) {
-        for(Coordinates c : room.getTiles()){
+        for (Coordinates c : room.getTiles()) {
             regionsMapping.put(c, room);
         }
         rooms.add(room);
@@ -47,7 +49,7 @@ public class Dungeon implements Map {
         return rooms;
     }
 
-    public ArrayList<Region> getRegions(){
+    public ArrayList<Region> getRegions() {
         return regions;
     }
 
@@ -59,7 +61,7 @@ public class Dungeon implements Map {
         visited[x][y] = b;
     }
 
-    public void setVisited(Coordinates coords, boolean b){
+    public void setVisited(Coordinates coords, boolean b) {
         int x = coords.getX();
         int y = coords.getY();
         visited[x][y] = b;
@@ -69,7 +71,7 @@ public class Dungeon implements Map {
         return visited[x][y];
     }
 
-    public boolean getVisited(Coordinates coords){
+    public boolean getVisited(Coordinates coords) {
         int x = coords.getX();
         int y = coords.getY();
         return visited[x][y];
@@ -79,7 +81,7 @@ public class Dungeon implements Map {
         dungeon[x][y] = c;
     }
 
-    public void setTile(Coordinates coords, char c){
+    public void setTile(Coordinates coords, char c) {
         int x = coords.getX();
         int y = coords.getY();
         dungeon[x][y] = c;
@@ -91,7 +93,7 @@ public class Dungeon implements Map {
     }
 
     @Override
-    public char getTile(Coordinates coords){
+    public char getTile(Coordinates coords) {
         int x = coords.getX();
         int y = coords.getY();
         return dungeon[x][y];

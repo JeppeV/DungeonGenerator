@@ -1,6 +1,8 @@
 package generator.generators.dungeon;
 
 import generator.standard.*;
+import generator.standard.dungeon.Dungeon;
+import generator.standard.dungeon.Room;
 
 import java.util.Random;
 

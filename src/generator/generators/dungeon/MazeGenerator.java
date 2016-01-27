@@ -1,9 +1,9 @@
 package generator.generators.dungeon;
 
-import generator.standard.TileType;
 import generator.standard.Coordinates;
-import generator.standard.Dungeon;
-import generator.standard.Maze;
+import generator.standard.dungeon.Dungeon;
+import generator.standard.dungeon.Maze;
+import generator.standard.TileType;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -56,7 +56,6 @@ public class MazeGenerator {
     }
 
 
-
     // generate the maze
     private Maze generateMaze(Dungeon dungeon, int initX, int initY) {
         Maze maze = new Maze(initX, initY);
@@ -83,7 +82,7 @@ public class MazeGenerator {
 
     private Stack<Coordinates> addNeighboursInRandomOrder(Coordinates coords, Stack<Coordinates> stack) {
         LinkedList<Coordinates> neighbours = new LinkedList<>();
-        for(Coordinates c : coords.getPrimeNeighbours()){
+        for (Coordinates c : coords.getPrimeNeighbours()) {
             neighbours.add(c);
         }
 
@@ -96,7 +95,7 @@ public class MazeGenerator {
     private boolean isLegalTile(Dungeon dungeon, Coordinates coords) {
         Coordinates[] neighbours = coords.getNeighbours();
         boolean result = true;
-        for(int i = 0; i < 8; i += 2){
+        for (int i = 0; i < 8; i += 2) {
             result = result && isLegalTileFromDirection(dungeon, neighbours, i);
         }
         return result;
@@ -137,7 +136,6 @@ public class MazeGenerator {
         }
         return null;
     }
-
 
 
 }

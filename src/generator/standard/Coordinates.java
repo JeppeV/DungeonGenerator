@@ -9,7 +9,7 @@ public class Coordinates {
         this.y = y;
     }
 
-    public Coordinates[] getNeighbours(){
+    public Coordinates[] getNeighbours() {
         Coordinates[] neighbours = new Coordinates[8];
         neighbours[0] = new Coordinates(x, y - 1);
         neighbours[1] = new Coordinates(x + 1, y - 1);
@@ -22,7 +22,7 @@ public class Coordinates {
         return neighbours;
     }
 
-    public Coordinates[] getPrimeNeighbours(){
+    public Coordinates[] getPrimeNeighbours() {
         Coordinates[] neighbours = new Coordinates[4];
         neighbours[0] = new Coordinates(x, y - 1);
         neighbours[1] = new Coordinates(x + 1, y);

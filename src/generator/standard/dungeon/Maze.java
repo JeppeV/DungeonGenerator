@@ -1,7 +1,8 @@
-package generator.standard;
+package generator.standard.dungeon;
+
+import generator.standard.Coordinates;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Maze implements Region {
 
@@ -25,11 +26,11 @@ public class Maze implements Region {
     }
 
 
-    public int getX1(){
+    public int getX1() {
         return x1;
     }
 
-    public int getY1(){
+    public int getY1() {
         return y1;
     }
 
@@ -53,7 +54,7 @@ public class Maze implements Region {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Maze: " + x1 + "," + y1;
     }
 }
