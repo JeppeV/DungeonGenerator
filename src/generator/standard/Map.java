@@ -18,4 +18,8 @@ public interface Map {
     int getWidthInTiles();
 
     int getHeightInTiles();
+
+    boolean isWithinBounds(int x, int y);
+
+    boolean isWithinBounds(Coordinates coords);
 }

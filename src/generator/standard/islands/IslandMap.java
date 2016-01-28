@@ -77,6 +77,18 @@ public class IslandMap implements Map {
     }
 
     @Override
+    public boolean isWithinBounds(int x, int y) {
+        return (x >= 0 && x <= width-1) && (y >= 0 && y <= height-1);
+    }
+
+    @Override
+    public boolean isWithinBounds(Coordinates coords) {
+        int x = coords.getX();
+        int y = coords.getY();
+        return (x >= 0 && x <= width-1) && (y >= 0 && y <= height-1);
+    }
+
+    @Override
     public String toString() {
         String string = "";
         for (int y = 0; y < height; y++) {
