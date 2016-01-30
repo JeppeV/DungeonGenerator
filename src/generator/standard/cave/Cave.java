@@ -1,69 +1,47 @@
-package generator.standard.islands;
+package generator.standard.cave;
 
 import generator.standard.Coordinates;
 import generator.standard.Map;
+import generator.standard.dungeon.Maze;
+import generator.standard.dungeon.Region;
+import generator.standard.dungeon.Room;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by Jeppe Vinberg on 27-01-2016.
+ * Created by Jeppe Vinberg on 30-01-2016.
  */
-public class IslandMap implements Map {
-
+public class Cave implements Map {
     private int width, height;
-    private char map[][];
-    private boolean visited[][];
+    private char[][] dungeon;
 
-    public IslandMap(int width, int height) {
+    public Cave(int width, int height) {
         this.width = width;
         this.height = height;
-        this.map = new char[width][height];
-        this.visited = new boolean[width][height];
+        this.dungeon = new char[width][height];
+    }
+
+    public void setTile(int x, int y, char c) {
+        dungeon[x][y] = c;
+    }
+
+    public void setTile(Coordinates coords, char c) {
+        int x = coords.getX();
+        int y = coords.getY();
+        dungeon[x][y] = c;
     }
 
     @Override
     public char getTile(int x, int y) {
-        return map[x][y];
+        return dungeon[x][y];
     }
 
     @Override
     public char getTile(Coordinates coords) {
         int x = coords.getX();
         int y = coords.getY();
-        return map[x][y];
-    }
-
-    @Override
-    public void setTile(int x, int y, char c) {
-        map[x][y] = c;
-    }
-
-    @Override
-    public void setTile(Coordinates coords, char c) {
-        int x = coords.getX();
-        int y = coords.getY();
-        map[x][y] = c;
-    }
-
-    public void setVisited(int x, int y, boolean b) {
-        visited[x][y] = b;
-    }
-
-    public void setVisited(Coordinates coords, boolean b) {
-        int x = coords.getX();
-        int y = coords.getY();
-        visited[x][y] = b;
-    }
-
-    public boolean getVisited(int x, int y) {
-        return visited[x][y];
-    }
-
-    public boolean getVisited(Coordinates coords) {
-        int x = coords.getX();
-        int y = coords.getY();
-        return visited[x][y];
+        return dungeon[x][y];
     }
 
     @Override
