@@ -61,6 +61,18 @@ public class CaveGenerator implements MapGenerator {
             }
         }
 
+
+        //make sure walls are solid
+        for (int x = 0; x < cave.getWidthInTiles(); x++) {
+            cave.setTile(x, 0, TileType.WALL);
+            cave.setTile(x, cave.getWidthInTiles() - 1, TileType.WALL);
+        }
+
+        for (int y = 0; y < cave.getHeightInTiles(); y++) {
+            cave.setTile(0, y, TileType.WALL);
+            cave.setTile(cave.getHeightInTiles() - 1, y, TileType.WALL);
+        }
+
         return cave;
     }
 
