@@ -19,7 +19,4 @@ public interface Map {
 
     int getHeightInTiles();
 
-    boolean isWithinBounds(int x, int y);
-
-    boolean isWithinBounds(Coordinates coords);
 }

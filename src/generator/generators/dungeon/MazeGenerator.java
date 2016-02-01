@@ -82,7 +82,7 @@ public class MazeGenerator {
 
     private Stack<Coordinates> addNeighboursInRandomOrder(Coordinates coords, Stack<Coordinates> stack) {
         LinkedList<Coordinates> neighbours = new LinkedList<>();
-        for (Coordinates c : coords.getPrimeNeighbours()) {
+        for (Coordinates c : coords.getCardinalNeighbours()) {
             neighbours.add(c);
         }
 

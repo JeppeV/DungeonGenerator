@@ -9,6 +9,7 @@ public class Coordinates {
         this.y = y;
     }
 
+    //returns neighbours in range 1, starting with the tile north of this, and the rest in clockwise order
     public Coordinates[] getNeighbours() {
         Coordinates[] neighbours = new Coordinates[8];
         neighbours[0] = new Coordinates(x, y - 1);
@@ -22,13 +23,18 @@ public class Coordinates {
         return neighbours;
     }
 
-    public Coordinates[] getPrimeNeighbours() {
+
+    public Coordinates[] getCardinalNeighbours() {
         Coordinates[] neighbours = new Coordinates[4];
         neighbours[0] = new Coordinates(x, y - 1);
         neighbours[1] = new Coordinates(x + 1, y);
         neighbours[2] = new Coordinates(x, y + 1);
         neighbours[3] = new Coordinates(x - 1, y);
         return neighbours;
+    }
+
+    public boolean isWithinBoundsOf(Map map){
+        return (x >= 0 && x <= map.getWidthInTiles() - 1) && (y >= 0 && y <= map.getHeightInTiles() - 1);
     }
 
     public int getX() {

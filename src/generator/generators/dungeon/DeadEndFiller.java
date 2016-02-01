@@ -21,7 +21,7 @@ public class DeadEndFiller {
     private boolean isEligibleTile(Dungeon dungeon, Coordinates coords) {
         int count = 0;
         if (dungeon.getTile(coords) == TileType.WALL) return false;
-        for (Coordinates c : coords.getPrimeNeighbours()) {
+        for (Coordinates c : coords.getCardinalNeighbours()) {
             if (dungeon.getTile(c) != TileType.WALL) {
                 count++;
             }
