@@ -42,7 +42,7 @@ public class CaveGenerator implements MapGenerator {
 
         cave = finalize(cave, alive);
 
-        cave = generateRiver(cave);
+        //cave = generateRiver(cave);
 
         return cave;
     }
