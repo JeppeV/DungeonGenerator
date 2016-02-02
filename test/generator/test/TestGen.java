@@ -8,9 +8,9 @@ import generator.standard.MapGenerator;
 public class TestGen {
 
     public static void main(String[] args) {
-        MapGenerator generator = new CaveGenerator();
-        Map d = generator.generateMap(40, 40);
-        System.out.println(d);
+        MapGenerator generator = new DungeonGenerator();
+        //Map d = generator.generateMap(40, 40);
+        //System.out.println(d);
         /*
 		int testI = 10000;
 		for(int i = 0; i < testI; i++){
@@ -18,6 +18,7 @@ public class TestGen {
 			System.out.println(i);
 		}
 		*/
+
 
 
     }

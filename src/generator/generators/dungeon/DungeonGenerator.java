@@ -28,7 +28,6 @@ public class DungeonGenerator implements MapGenerator {
         dungeon = mazeGenerator.generateMazes(dungeon);
         dungeon = connectionGenerator.generateConnections(dungeon);
         dungeon = deadEndFiller.fillDeadEnds(dungeon);
-
         return dungeon;
     }
 
