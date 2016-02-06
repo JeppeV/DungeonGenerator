@@ -14,7 +14,7 @@ public class RoomGenerator {
 
     public RoomGenerator() {
         this.NO_ATTEMPTS = 40;
-        this.numberOfRooms = 30;
+        this.numberOfRooms = 80;
         this.minRoomSize = 3;
         this.maxRoomSize = 7;
     }
@@ -24,6 +24,7 @@ public class RoomGenerator {
         Dungeon d = dungeon;
         boolean overlapsExisting;
         int x1, y1, roomWidth, roomHeight;
+        int numberOfRooms = Math.max(dungeon.getWidthInTiles(), dungeon.getHeightInTiles()) - 20;
         int attempts;
         int roomsAdded = 0;
         int maxX = dungeon.getWidthInTiles() - maxRoomSize;
