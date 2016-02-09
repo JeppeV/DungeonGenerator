@@ -57,7 +57,7 @@ public class RoomGenerator {
             }
 
         }
-        System.out.println("RoomGenerator successfully created " + roomsAdded + "/" + numberOfRooms + " rooms, using " + NO_ATTEMPTS + " attempts each.");
+        System.out.println("MapGenerator: RoomGenerator successfully created " + roomsAdded + "/" + numberOfRooms + " rooms, using " + NO_ATTEMPTS + " attempts each.");
         return d;
     }
 

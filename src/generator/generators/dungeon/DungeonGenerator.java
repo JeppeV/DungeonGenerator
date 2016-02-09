@@ -21,6 +21,7 @@ public class DungeonGenerator implements MapGenerator {
 
     @Override
     public Map generateMap(int width, int height) {
+        double start = System.currentTimeMillis();
         Dungeon dungeon = new Dungeon(width, height);
         dungeon = fillDungeonWith(dungeon, TileType.WALL);
         dungeon = fillVisitedWith(dungeon, false);
@@ -28,6 +29,8 @@ public class DungeonGenerator implements MapGenerator {
         dungeon = mazeGenerator.generateMazes(dungeon);
         dungeon = connectionGenerator.generateConnections(dungeon);
         dungeon = deadEndFiller.fillDeadEnds(dungeon);
+        double diff = System.currentTimeMillis() - start;
+        System.out.println("MapGenerator: DungeonGenerator finished generating dungeon of size " + width + " X " + height + " in " + diff + "ms.");
         return dungeon;
     }
 

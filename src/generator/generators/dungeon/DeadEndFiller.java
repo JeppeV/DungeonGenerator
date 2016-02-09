@@ -10,6 +10,7 @@ import generator.standard.TileType;
 public class DeadEndFiller {
 
     public Dungeon fillDeadEnds(Dungeon dungeon) {
+        //find all tiles where only 1 cardinal neighbour is not a wall, and fill it
         Coordinates tile = findNextEligibleTile(dungeon);
         while (tile != null) {
             dungeon.setTile(tile.getX(), tile.getY(), TileType.WALL);
@@ -27,7 +28,7 @@ public class DeadEndFiller {
             }
         }
 
-        return count == 1;
+        return count == 1 || count == 0;
     }
 
     private Coordinates findNextEligibleTile(Dungeon dungeon) {

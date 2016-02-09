@@ -30,7 +30,7 @@ public class MazeGenerator {
             mazes.add(maze);
             eligibleInitialTile = findNextEligibleInitialTile(dungeon);
         }
-        System.out.println("MazeGenerator successfully created " + mazes.size() + " mazes.");
+        System.out.println("MapGenerator: MazeGenerator successfully created " + mazes.size() + " mazes.");
         return dungeon;
 
     }
