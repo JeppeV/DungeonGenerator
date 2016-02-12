@@ -1,6 +1,7 @@
 package generator.standard.dungeon;
 
-import generator.standard.*;
+import generator.standard.Coordinates;
+import generator.standard.Map;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,10 +32,6 @@ public class Dungeon implements Map {
         }
         mazes.add(maze);
         regions.add(maze);
-    }
-
-    public ArrayList<Maze> mazes() {
-        return mazes;
     }
 
     public void addRoom(Room room) {

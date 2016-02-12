@@ -1,8 +1,8 @@
 package generator.generators.dungeon;
 
 import generator.standard.Coordinates;
-import generator.standard.dungeon.Dungeon;
 import generator.standard.TileType;
+import generator.standard.dungeon.Dungeon;
 
 /**
  * Created by Jeppe Vinberg on 27-01-2016.

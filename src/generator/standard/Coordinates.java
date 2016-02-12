@@ -10,7 +10,7 @@ public class Coordinates {
     }
 
     //returns neighbours in range 1, starting with the tile north of this, and the rest in clockwise order
-    public Coordinates[] getNeighbours() {
+    public Coordinates[] getAllNeighbours() {
         Coordinates[] neighbours = new Coordinates[8];
         neighbours[0] = new Coordinates(x, y - 1);
         neighbours[1] = new Coordinates(x + 1, y - 1);
@@ -33,7 +33,7 @@ public class Coordinates {
         return neighbours;
     }
 
-    public boolean isWithinBoundsOf(Map map){
+    public boolean isWithinBoundsOf(Map map) {
         return (x >= 0 && x <= map.getWidthInTiles() - 1) && (y >= 0 && y <= map.getHeightInTiles() - 1);
     }
 

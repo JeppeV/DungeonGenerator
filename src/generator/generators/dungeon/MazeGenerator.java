@@ -1,9 +1,9 @@
 package generator.generators.dungeon;
 
 import generator.standard.Coordinates;
+import generator.standard.TileType;
 import generator.standard.dungeon.Dungeon;
 import generator.standard.dungeon.Maze;
-import generator.standard.TileType;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -41,7 +41,6 @@ public class MazeGenerator {
         int width = dungeon.getWidthInTiles();
         int height = dungeon.getHeightInTiles();
 
-
         border = new boolean[width][height];
 
         for (int x = 0; x < width; x++) {
@@ -54,7 +53,6 @@ public class MazeGenerator {
             border[width - 1][y] = true;
         }
     }
-
 
     // generate the maze
     private Maze generateMaze(Dungeon dungeon, int initX, int initY) {
@@ -93,7 +91,7 @@ public class MazeGenerator {
     }
 
     private boolean isLegalTile(Dungeon dungeon, Coordinates coords) {
-        Coordinates[] neighbours = coords.getNeighbours();
+        Coordinates[] neighbours = coords.getAllNeighbours();
         boolean result = true;
         for (int i = 0; i < 8; i += 2) {
             result = result && isLegalTileFromDirection(dungeon, neighbours, i);
@@ -118,7 +116,7 @@ public class MazeGenerator {
         int y = coords.getY();
         int cX, cY;
         if (dungeon.getVisited(x, y) || border[x][y]) return false;
-        for (Coordinates c : coords.getNeighbours()) {
+        for (Coordinates c : coords.getAllNeighbours()) {
             cX = c.getX();
             cY = c.getY();
             result = result && !dungeon.getVisited(cX, cY);

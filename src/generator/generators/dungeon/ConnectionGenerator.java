@@ -62,14 +62,14 @@ public class ConnectionGenerator {
                     currentConnectors.put(c.getCoordinates(), region2);
                 } else if (merged.get(region2) && !merged.get(region1)) {
                     currentConnectors.put(c.getCoordinates(), region1);
-                } else if (merged.get(region1) && merged.get(region2)){
+                } else if (merged.get(region1) && merged.get(region2)) {
                     //remove connectors that connect two merged rooms from the connector sets
                     obsoleteConnectors.add(c);
                 }
             }
 
 
-            if(currentConnectors.isEmpty()) break;
+            if (currentConnectors.isEmpty()) break;
 
             //choose random connector and open it up
             Coordinates randomC = getRandomKey(currentConnectors.keySet());
@@ -87,8 +87,6 @@ public class ConnectionGenerator {
 
             obsoleteConnectors.clear();
             currentConnectors.clear();
-
-
 
 
         }
@@ -139,7 +137,7 @@ public class ConnectionGenerator {
         return false;
     }
 
-    private <E> E  getRandomKey(Set<E> set) {
+    private <E> E getRandomKey(Set<E> set) {
         List<E> keys = new ArrayList<>(set);
         return keys.get(random.nextInt(keys.size()));
     }

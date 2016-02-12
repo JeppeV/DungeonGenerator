@@ -18,7 +18,7 @@ public class CaveGenerator implements MapGenerator {
     private int innerBirthLimit, outerBirthLimit;
     private int iter1, iter2;
 
-    public CaveGenerator(){
+    public CaveGenerator() {
         this.chanceToStartAlive = 0.4f;
         this.innerBirthLimit = 5;
         this.outerBirthLimit = 2;
@@ -33,10 +33,10 @@ public class CaveGenerator implements MapGenerator {
 
         boolean[][] alive = init(cave);
 
-        for(int i = 0; i < iter1; i++){
+        for (int i = 0; i < iter1; i++) {
             alive = runIterationType1(alive);
         }
-        for(int i = 0; i < iter2; i++){
+        for (int i = 0; i < iter2; i++) {
             alive = runIterationType2(alive);
         }
 
@@ -47,22 +47,22 @@ public class CaveGenerator implements MapGenerator {
         return cave;
     }
 
-    private boolean[][] init(Cave cave){
+    private boolean[][] init(Cave cave) {
         boolean[][] result = new boolean[cave.getWidthInTiles()][cave.getHeightInTiles()];
-        for(int x = 0; x < cave.getWidthInTiles(); x++){
-            for(int y = 0; y < cave.getHeightInTiles(); y++){
+        for (int x = 0; x < cave.getWidthInTiles(); x++) {
+            for (int y = 0; y < cave.getHeightInTiles(); y++) {
                 result[x][y] = Math.random() < chanceToStartAlive;
             }
         }
         return result;
     }
 
-    private Cave finalize(Cave cave, boolean[][] alive){
-        for(int x = 0; x < cave.getWidthInTiles(); x++){
-            for(int y = 0; y < cave.getHeightInTiles(); y++){
-                if(alive[x][y]){
+    private Cave finalize(Cave cave, boolean[][] alive) {
+        for (int x = 0; x < cave.getWidthInTiles(); x++) {
+            for (int y = 0; y < cave.getHeightInTiles(); y++) {
+                if (alive[x][y]) {
                     cave.setTile(x, y, TileType.WALL);
-                }else{
+                } else {
                     cave.setTile(x, y, TileType.FLOOR);
                 }
             }
@@ -83,11 +83,11 @@ public class CaveGenerator implements MapGenerator {
         return cave;
     }
 
-    private boolean[][] runIterationType1(boolean[][] alive){
+    private boolean[][] runIterationType1(boolean[][] alive) {
         boolean[][] newAlive = new boolean[alive.length][alive[0].length];
         int nbs1, nbs2;
-        for(int x=0; x< alive.length; x++){
-            for(int y=0; y<alive[0].length; y++){
+        for (int x = 0; x < alive.length; x++) {
+            for (int y = 0; y < alive[0].length; y++) {
                 nbs1 = countAliveNeighboursInRange(x, y, 1, alive);
                 nbs2 = countAliveNeighboursInRange(x, y, 2, alive);
                 newAlive[x][y] = nbs1 >= innerBirthLimit || nbs2 <= outerBirthLimit;
@@ -98,11 +98,11 @@ public class CaveGenerator implements MapGenerator {
         return newAlive;
     }
 
-    private boolean[][] runIterationType2(boolean[][] alive){
+    private boolean[][] runIterationType2(boolean[][] alive) {
         boolean[][] newAlive = new boolean[alive.length][alive[0].length];
         int nbs;
-        for(int x=0; x< alive.length; x++){
-            for(int y=0; y<alive[0].length; y++){
+        for (int x = 0; x < alive.length; x++) {
+            for (int y = 0; y < alive[0].length; y++) {
                 nbs = countAliveNeighboursInRange(x, y, 1, alive);
                 newAlive[x][y] = nbs >= innerBirthLimit;
             }
@@ -111,19 +111,19 @@ public class CaveGenerator implements MapGenerator {
         return newAlive;
     }
 
-    private int countAliveNeighboursInRange(int x0, int y0, int range, boolean[][] alive){
+    private int countAliveNeighboursInRange(int x0, int y0, int range, boolean[][] alive) {
         int count = 0;
-        for(int x = -1 * range; x < range + 1; x++){
-            for(int y = -1 * range; y < range + 1; y++){
+        for (int x = -1 * range; x < range + 1; x++) {
+            for (int y = -1 * range; y < range + 1; y++) {
                 int neighbour_x = x0 + x;
                 int neighbour_y = y0 + y;
 
                 //In case the index we're looking at it off the edge of the map
-                if(neighbour_x < 0 || neighbour_y < 0 || neighbour_x >= alive.length || neighbour_y >= alive[0].length){
+                if (neighbour_x < 0 || neighbour_y < 0 || neighbour_x >= alive.length || neighbour_y >= alive[0].length) {
                     count = count + 1;
                 }
                 //Otherwise, a normal check of the neighbour
-                else if(alive[neighbour_x][neighbour_y]){
+                else if (alive[neighbour_x][neighbour_y]) {
                     count = count + 1;
                 }
             }
@@ -131,51 +131,51 @@ public class CaveGenerator implements MapGenerator {
         return count;
     }
 
-    private Cave generateRiver(Cave cave){
+    private Cave generateRiver(Cave cave) {
         Random random = new Random();
         int stray = 3;
         int initX, initY;
         boolean right;
         Coordinates current;
         LinkedList<Coordinates> neighbours = new LinkedList<>();
-        if(Math.random() < 0.5){
+        if (Math.random() < 0.5) {
             initX = 0;
             initY = 1 + random.nextInt(cave.getHeightInTiles() - 1);
             current = new Coordinates(initX, initY);
             right = true;
-        }else{
+        } else {
             initX = 1 + random.nextInt(cave.getWidthInTiles() - 1);
             initY = 0;
             current = new Coordinates(initX, initY);
             right = false;
         }
         int count;
-        while(current.isWithinBoundsOf(cave)){
+        while (current.isWithinBoundsOf(cave)) {
             cave.setTile(current, '.');
 
-            for(Coordinates c : current.getCardinalNeighbours()){
+            for (Coordinates c : current.getCardinalNeighbours()) {
                 count = 0;
-                for(Coordinates cc : c.getCardinalNeighbours()){
-                    if(cc.isWithinBoundsOf(cave) && cave.getTile(cc) == '.'){
+                for (Coordinates cc : c.getCardinalNeighbours()) {
+                    if (cc.isWithinBoundsOf(cave) && cave.getTile(cc) == '.') {
                         count++;
                     }
                 }
-                if(count == 1){
-                    if(right){
-                        if(c.getX() > current.getX() || (c.getX() >= current.getX() && c.getY() < initY + stray && c.getY() > initY - stray)){
+                if (count == 1) {
+                    if (right) {
+                        if (c.getX() > current.getX() || (c.getX() >= current.getX() && c.getY() < initY + stray && c.getY() > initY - stray)) {
 
-                            if(c.getX() == 0 || c.getX() == cave.getWidthInTiles() - 1 || c.getY() == 0 || c.getY() == cave.getHeightInTiles() - 1){
+                            if (c.getX() == 0 || c.getX() == cave.getWidthInTiles() - 1 || c.getY() == 0 || c.getY() == cave.getHeightInTiles() - 1) {
 
-                            }else{
+                            } else {
                                 neighbours.add(c);
                             }
                         }
-                    }else{
-                        if(c.getY() > current.getY() || (c.getY() >= current.getY() && c.getX() < initX + stray && c.getX() > initX - stray)){
+                    } else {
+                        if (c.getY() > current.getY() || (c.getY() >= current.getY() && c.getX() < initX + stray && c.getX() > initX - stray)) {
 
-                            if(c.getX() == 0 || c.getX() == cave.getWidthInTiles() - 1 || c.getY() == 0 || c.getY() == cave.getHeightInTiles() - 1){
+                            if (c.getX() == 0 || c.getX() == cave.getWidthInTiles() - 1 || c.getY() == 0 || c.getY() == cave.getHeightInTiles() - 1) {
 
-                            }else{
+                            } else {
                                 neighbours.add(c);
                             }
                         }
@@ -184,7 +184,7 @@ public class CaveGenerator implements MapGenerator {
 
 
             }
-            if(neighbours.isEmpty()) break;
+            if (neighbours.isEmpty()) break;
             current = neighbours.get(random.nextInt(neighbours.size()));
             neighbours.clear();
 

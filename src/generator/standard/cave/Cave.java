@@ -2,17 +2,12 @@ package generator.standard.cave;
 
 import generator.standard.Coordinates;
 import generator.standard.Map;
-import generator.standard.dungeon.Maze;
-import generator.standard.dungeon.Region;
-import generator.standard.dungeon.Room;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Jeppe Vinberg on 30-01-2016.
  */
 public class Cave implements Map {
+
     private int width, height;
     private char[][] dungeon;
 
